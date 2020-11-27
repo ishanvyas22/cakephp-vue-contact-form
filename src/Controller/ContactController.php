@@ -15,8 +15,5 @@ class ContactController extends AppController
      */
     public function index()
     {
-        $contact = $this->paginate($this->Contact);
-
-        $this->set(compact('contact'));
     }
 }
