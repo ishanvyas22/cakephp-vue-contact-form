@@ -40,6 +40,12 @@
     <footer>
     </footer>
 
+    <?php
+    echo $this->Html->scriptBlock(sprintf(
+        'var csrfToken = %s;',
+        json_encode($this->request->getAttribute('csrfToken'))
+    ));
+    ?>
     <?= $this->Html->script('app') ?>
 </body>
 </html>

@@ -14397,6 +14397,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helpers_FormErrors_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/FormErrors.js */ "./resources/js/helpers/FormErrors.js");
+
 
 
 window.axios = axios__WEBPACK_IMPORTED_MODULE_1___default.a;
@@ -14406,14 +14408,113 @@ var CUSTOMER_SUPPORT = '1';
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#contact',
   data: {
-    type: CUSTOMER_SUPPORT
+    form: {
+      contact_type: CUSTOMER_SUPPORT,
+      firstname: '',
+      lastname: '',
+      email: '',
+      message: '',
+      company_name: '',
+      company_size: '',
+      industry: '',
+      region: ''
+    },
+    errors: new _helpers_FormErrors_js__WEBPACK_IMPORTED_MODULE_2__["default"]()
   },
   methods: {
     submitForm: function submitForm() {
+      var _this = this;
+
       console.log('Submitting...');
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/contact', this.form, {
+        headers: {
+          'X-CSRF-Token': window.csrfToken
+        }
+      }).then(function (response) {
+        if (response.data.success) {
+          _this.$notify({
+            group: 'default',
+            type: 'success',
+            text: response.data.message
+          }); // Reset form fields
+
+        }
+      })["catch"](function (error) {
+        _this.$notify({
+          group: 'default',
+          type: 'error',
+          text: error.response.data.message
+        });
+
+        _this.errors.add(error.response.data.errors);
+      });
     }
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/helpers/FormErrors.js":
+/*!********************************************!*\
+  !*** ./resources/js/helpers/FormErrors.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Errors; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Errors = /*#__PURE__*/function () {
+  function Errors() {
+    _classCallCheck(this, Errors);
+
+    this.errors = {};
+  }
+
+  _createClass(Errors, [{
+    key: "add",
+    value: function add(errors) {
+      this.errors = errors;
+    }
+  }, {
+    key: "get",
+    value: function get(field) {
+      if (this.errors[field]) {
+        return this.errors[field];
+      }
+    }
+  }, {
+    key: "has",
+    value: function has(field) {
+      if (this.errors[field]) {
+        return true;
+      }
+
+      return false;
+    }
+  }, {
+    key: "clear",
+    value: function clear(field) {
+      delete this.errors[field];
+    }
+  }, {
+    key: "any",
+    value: function any() {
+      return Object.keys(this.errors).length > 0;
+    }
+  }]);
+
+  return Errors;
+}();
+
+
+;
 
 /***/ }),
 
