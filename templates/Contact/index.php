@@ -19,23 +19,23 @@
                     [
                         'value' => '1',
                         'v-model' => 'type',
+                    ]
+                );
+                ?>
+
+                <?php
+                    echo $this->Form->control('firstname');
+                    echo $this->Form->control('lastname');
+                    echo $this->Form->control('email');
+                    echo $this->Form->control('message', [
+                        'type' => 'textarea',
+                        'rows' => '10',
+                        'cols' => '5',
                     ]);
                 ?>
 
-                <div class="contact-support" v-if="type === '1'">
+                <div class="sales" v-if="type === '2'">
                     <?php
-                    echo $this->Form->control('firstname');
-                    echo $this->Form->control('lastname');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('message', ['type' => 'textarea', 'rows' => '10', 'cols' => '5']);
-                    ?>
-                </div>
-                <div class="sales" v-else>
-                    <?php
-                    echo $this->Form->control('firstname');
-                    echo $this->Form->control('lastname');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('message', ['type' => 'textarea', 'rows' => '10', 'cols' => '5']);
                     echo $this->Form->control('company_name');
                     echo $this->Form->control('company_size', [
                         'type' => 'select',
