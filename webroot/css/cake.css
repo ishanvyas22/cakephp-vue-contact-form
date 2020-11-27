@@ -2,6 +2,17 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
+    background-color: #161616 !important;
+    color: #eff8ff;
+}
+
+select {
+    color: #eff8ff;
+}
+
+.btn-blue {
+    background-color: #1e9beb;
+    border-color: #1e9beb;
 }
 
 .top-nav-links,
@@ -12,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
-    color: #363637;
+    color: #eff8ff;
 }
 
 a {
@@ -57,7 +68,7 @@ body {
 }
 .content {
     padding: 2rem;
-    background: #ffffff;
+    background: #161616;
     border-radius: 0.4rem;
     /* Thanks Stripe */
     box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
@@ -213,4 +224,8 @@ th {
     .desc:after {
         content: " \2190";
     }
+}
+
+.txt-dark-gray {
+    color: #575757;
 }
