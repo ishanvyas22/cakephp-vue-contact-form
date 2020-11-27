@@ -6,17 +6,23 @@
 <div class="row">
     <div class="column-responsive column-80">
         <div class="contact form content">
-            <?= $this->Form->create(null) ?>
+            <?= $this->Form->create(null, ['id' => 'contact', 'v-on:submit.prevent' => 'submitForm']) ?>
             <fieldset>
                 <p>My question is related to:</p>
                 <?php
-                echo $this->Form->radio('type', [
-                    '1' => 'Customer Support',
-                    '2' => 'Sales',
-                ], ['value' => '1']);
+                echo $this->Form->radio(
+                    'type',
+                    [
+                        '1' => 'Customer Support',
+                        '2' => 'Sales',
+                    ],
+                    [
+                        'value' => '1',
+                        'v-model' => 'type',
+                    ]);
                 ?>
 
-                <div class="contact-support">
+                <div class="contact-support" v-if="type === '1'">
                     <?php
                     echo $this->Form->control('firstname');
                     echo $this->Form->control('lastname');
@@ -24,8 +30,7 @@
                     echo $this->Form->control('message', ['type' => 'textarea', 'rows' => '10', 'cols' => '5']);
                     ?>
                 </div>
-
-                <div class="sales">
+                <div class="sales" v-else>
                     <?php
                     echo $this->Form->control('firstname');
                     echo $this->Form->control('lastname');

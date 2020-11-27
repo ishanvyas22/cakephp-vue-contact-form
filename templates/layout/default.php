@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +20,6 @@
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
 </head>
 <body>
     <nav class="top-nav">
@@ -35,5 +39,7 @@
     </main>
     <footer>
     </footer>
+
+    <?= $this->Html->script('app') ?>
 </body>
 </html>
