@@ -13,7 +13,7 @@
                 echo $this->Form->radio('type', [
                     '1' => 'Customer Support',
                     '2' => 'Sales',
-                ]);
+                ], ['value' => '1']);
                 ?>
 
                 <div class="contact-support">
