@@ -56,7 +56,7 @@ class Application extends BaseApplication
             $this->addPlugin('DebugKit');
         }
 
-        // Load more plugins here
+        $this->addPlugin('AssetMix');
     }
 
     /**
