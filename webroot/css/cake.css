@@ -229,3 +229,12 @@ th {
 .txt-dark-gray {
     color: #575757;
 }
+
+.error-message {
+    color: #c53030;
+    margin-bottom: 10px;
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+}

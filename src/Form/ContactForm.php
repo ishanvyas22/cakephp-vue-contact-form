@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use Cake\Form\Form;
+use App\Form\BaseForm;
 use Cake\Form\Schema;
 use Cake\Validation\Validator;
 
-class ContactForm extends Form
+class ContactForm extends BaseForm
 {
     /**
      * @inheritDoc
@@ -39,7 +39,19 @@ class ContactForm extends Form
             ->notEmptyString('lastname')
             ->notEmptyString('message')
             ->notEmptyString('email')
-            ->email('email');
+            ->email('email')
+            ->notEmptyString('company_name', null, function ($context) {
+                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === '2';
+            })
+            ->notEmptyString('company_size', null, function ($context) {
+                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === '2';
+            })
+            ->notEmptyString('industry', null, function ($context) {
+                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === '2';
+            })
+            ->notEmptyString('region', null, function ($context) {
+                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === '2';
+            });
 
         return $validator;
     }

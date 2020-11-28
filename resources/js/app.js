@@ -26,7 +26,6 @@ const app = new Vue({
     },
     methods: {
         submitForm() {
-            console.log('Submitting...');
             axios.post('/contact', this.form, {
                 headers: {
                     'X-CSRF-Token': window.csrfToken,
@@ -42,12 +41,6 @@ const app = new Vue({
                     // Reset form fields
                 }
             }).catch(error => {
-                this.$notify({
-                    group: 'default',
-                    type: 'error',
-                    text: error.response.data.message
-                });
-
                 this.errors.add(error.response.data.errors);
             });
         }

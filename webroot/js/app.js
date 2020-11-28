@@ -14425,7 +14425,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     submitForm: function submitForm() {
       var _this = this;
 
-      console.log('Submitting...');
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/contact', this.form, {
         headers: {
           'X-CSRF-Token': window.csrfToken
@@ -14440,12 +14439,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 
         }
       })["catch"](function (error) {
-        _this.$notify({
-          group: 'default',
-          type: 'error',
-          text: error.response.data.message
-        });
-
         _this.errors.add(error.response.data.errors);
       });
     }
