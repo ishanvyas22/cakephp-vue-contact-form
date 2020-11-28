@@ -238,3 +238,19 @@ th {
 button, input, optgroup, select, textarea {
     color: inherit;
 }
+
+.btn-primary {
+    color: #fff;
+    background-color: #09e;
+    border-color: #09e;
+    text-transform: none;
+    font-size: 100%;
+}
+
+.btn-primary:focus, .btn-primary:hover {
+    color: #e5e5ea;
+    background-color: #007ac2;
+    border-color: #007ac2;
+    text-transform: none;
+    font-size: 100%;
+}

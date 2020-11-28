@@ -128,7 +128,7 @@
                 </p>
             </fieldset>
 
-            <?= $this->Form->button(__('Contact us'), ['class' => 'btn-blue']) ?>
+            <?= $this->Form->button(__('Contact us'), ['class' => 'btn-primary btn-large']) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
