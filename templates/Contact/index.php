@@ -12,6 +12,7 @@
                 'novalidate' => true,
                 '@submit.prevent' => 'submitForm',
                 '@keydown' => 'errors.clear($event.target.name)',
+                '@change' => 'errors.clear($event.target.name)',
             ]);
             ?>
             <fieldset>
