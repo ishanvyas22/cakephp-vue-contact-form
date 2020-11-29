@@ -45,19 +45,24 @@ class ContactForm extends BaseForm
             ->notEmptyString('email')
             ->email('email')
             ->notEmptyString('company_name', null, function ($context) {
-                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === CONTACT_TYPE_SALES;
+                return isset($context['data']['contact_type']) &&
+                    $context['data']['contact_type'] === CONTACT_TYPE_SALES;
             })
             ->notEmptyString('company_size', null, function ($context) {
-                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === CONTACT_TYPE_SALES;
+                return isset($context['data']['contact_type']) &&
+                    $context['data']['contact_type'] === CONTACT_TYPE_SALES;
             })
             ->notEmptyString('industry', null, function ($context) {
-                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === CONTACT_TYPE_SALES;
+                return isset($context['data']['contact_type']) &&
+                    $context['data']['contact_type'] === CONTACT_TYPE_SALES;
             })
             ->notEmptyString('region', null, function ($context) {
-                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === CONTACT_TYPE_SALES;
+                return isset($context['data']['contact_type']) &&
+                    $context['data']['contact_type'] === CONTACT_TYPE_SALES;
             })
             ->notEmptyString('region', null, function ($context) {
-                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === CONTACT_TYPE_SALES;
+                return isset($context['data']['contact_type']) &&
+                    $context['data']['contact_type'] === CONTACT_TYPE_SALES;
             })
             ->add('phone', 'custom', [
                 'rule' => function ($value, $context) {
