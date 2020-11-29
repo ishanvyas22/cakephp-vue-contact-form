@@ -38,29 +38,25 @@ class ContactForm extends BaseForm
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->notEmptyString('contact_type')
-            ->notEmptyString('firstname')
-            ->notEmptyString('lastname')
-            ->notEmptyString('message')
-            ->notEmptyString('email')
-            ->email('email')
-            ->notEmptyString('company_name', null, function ($context) {
+            ->notEmptyString('contact_type', __('Please select a contact type.'))
+            ->notEmptyString('firstname', __('Please enter your first name.'))
+            ->notEmptyString('lastname', __('Please enter your last name.'))
+            ->notEmptyString('message', __('Please enter message.'))
+            ->notEmptyString('email', __('Please enter your email.'))
+            ->email('email', false, __('Please enter valid email.'))
+            ->notEmptyString('company_name', __('Please enter your company name.'), function ($context) {
                 return isset($context['data']['contact_type']) &&
                     $context['data']['contact_type'] === CONTACT_TYPE_SALES;
             })
-            ->notEmptyString('company_size', null, function ($context) {
+            ->notEmptyString('company_size', __('Please select company size.'), function ($context) {
                 return isset($context['data']['contact_type']) &&
                     $context['data']['contact_type'] === CONTACT_TYPE_SALES;
             })
-            ->notEmptyString('industry', null, function ($context) {
+            ->notEmptyString('industry', __('Please select your industry.'), function ($context) {
                 return isset($context['data']['contact_type']) &&
                     $context['data']['contact_type'] === CONTACT_TYPE_SALES;
             })
-            ->notEmptyString('region', null, function ($context) {
-                return isset($context['data']['contact_type']) &&
-                    $context['data']['contact_type'] === CONTACT_TYPE_SALES;
-            })
-            ->notEmptyString('region', null, function ($context) {
+            ->notEmptyString('region', __('Please select your region.'), function ($context) {
                 return isset($context['data']['contact_type']) &&
                     $context['data']['contact_type'] === CONTACT_TYPE_SALES;
             })
