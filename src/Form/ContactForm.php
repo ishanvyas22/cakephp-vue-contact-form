@@ -51,7 +51,19 @@ class ContactForm extends BaseForm
             })
             ->notEmptyString('region', null, function ($context) {
                 return isset($context['data']['contact_type']) && $context['data']['contact_type'] === '2';
-            });
+            })
+            ->notEmptyString('region', null, function ($context) {
+                return isset($context['data']['contact_type']) && $context['data']['contact_type'] === '2';
+            })
+            ->add('phone', 'custom', [
+                'rule' => function ($value, $context) {
+                    return (bool)preg_match("/^\+[0-9]+$/", $value);
+                },
+                'message' => __('Please enter a valid phone number.'),
+                'on' => function ($context) {
+                    return !empty($context['data']['phone']);
+                }
+            ]);
 
         return $validator;
     }
@@ -62,7 +74,7 @@ class ContactForm extends BaseForm
     protected function _execute(array $data): bool
     {
         // Send an email.
-        debug($data);
+        debug($data);exit;
 
         return true;
     }
