@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Form\BaseForm;
 use Cake\Core\Configure;
 use Cake\Form\Schema;
 use Cake\Http\Client;
@@ -67,7 +66,7 @@ class ContactForm extends BaseForm
                 'message' => __('Please enter a valid phone number.'),
                 'on' => function ($context) {
                     return !empty($context['data']['phone']);
-                }
+                },
             ]);
 
         return $validator;
@@ -82,7 +81,6 @@ class ContactForm extends BaseForm
             $this->sendEmail($data);
         } elseif ($data['contact_type'] === CONTACT_TYPE_SALES) {
             $this->makeRequest($data);
-
         }
 
         return true;
