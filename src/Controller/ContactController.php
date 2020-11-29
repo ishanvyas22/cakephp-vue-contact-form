@@ -40,7 +40,10 @@ class ContactController extends AppController
                 ], 422);
             }
 
-            $this->Flash->success('We will get back to you soon.');
+            return $this->setJsonResponse([
+                'success' => true,
+                'message' => __('Thank you for your message'),
+            ]);
         }
 
         $this->set('contact', $contact);
