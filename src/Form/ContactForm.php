@@ -6,8 +6,10 @@ namespace App\Form;
 use App\Form\BaseForm;
 use Cake\Core\Configure;
 use Cake\Form\Schema;
+use Cake\Http\Client;
 use Cake\Mailer\Mailer;
 use Cake\Validation\Validator;
+use Throwable;
 
 class ContactForm extends BaseForm
 {
@@ -24,7 +26,8 @@ class ContactForm extends BaseForm
             ->addField('company_name', ['type' => 'string'])
             ->addField('company_size', ['type' => 'select'])
             ->addField('industry', ['type' => 'select'])
-            ->addField('region', ['type' => 'select']);
+            ->addField('region', ['type' => 'select'])
+            ->addField('phone', ['type' => 'string']);
     }
 
     /**
@@ -75,16 +78,52 @@ class ContactForm extends BaseForm
      */
     protected function _execute(array $data): bool
     {
-        // Send an email.
         if ($data['contact_type'] === CONTACT_TYPE_CUSTOMER_SUPPORT) {
-            $mailer = new Mailer('default');
-            $result = $mailer->setTo(Configure::read('SendMail.to'))
-                ->setSubject("{$data['firstname']} {$data['lastname']} needs some help")
-                ->deliver(sprintf('Their message is "%s", contact them at %s.', $data['message'], $data['email']));
+            $result = $this->sendEmail($data);
+        } elseif ($data['contact_type'] === CONTACT_TYPE_SALES) {
+            $this->makeRequest($data);
+
         }
 
-        dd($result);
-
         return true;
+    }
+
+    /**
+     * Send email to the customer support team.
+     *
+     * @param array $data Data to use when sending the email.
+     * @return array
+     */
+    private function sendEmail(array $data)
+    {
+        $mailer = new Mailer('default');
+
+        return $mailer->setTo(Configure::read('SendMail.to'))
+            ->setSubject("{$data['firstname']} {$data['lastname']} needs some help")
+            ->deliver(sprintf('Their message is "%s", contact them at %s.', $data['message'], $data['email']));
+    }
+
+    /**
+     * Make an API request to send sales data.
+     *
+     * @param array $data Data to send.
+     * @return \Cake\Http\Client\Response|null
+     */
+    private function makeRequest(array $data)
+    {
+        $response = null;
+        $http = new Client();
+
+        try {
+            $response = $http->post(
+                Configure::read('Endpoints.sales'),
+                $data,
+                ['headers' => ['charset' => 'utf-8']]
+            );
+        } catch (Throwable $th) {
+            // Handle exception
+        }
+
+        return $response;
     }
 }

@@ -433,4 +433,8 @@ return [
     'Session' => [
         'defaults' => 'php',
     ],
+
+    'Endpoints' => [
+        'sales' => env('API_ENDPOINT_SALES', null),
+    ]
 ];
