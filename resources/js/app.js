@@ -2,7 +2,6 @@ import Vue from 'vue';
 import axios from 'axios';
 import Errors from './helpers/FormErrors.js';
 import VueSweetalert2 from 'vue-sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
 
 window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
