@@ -215,3 +215,5 @@ ServerRequest::addDetector('tablet', function ($request) {
 
 // Load application specific constants
 require __DIR__ . '/constants.php';
+
+Configure::load('dropdown', 'default');

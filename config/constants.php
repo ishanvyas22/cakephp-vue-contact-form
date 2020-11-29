@@ -3,5 +3,5 @@
 /**
  * Contact types
  */
-define('CONTACT_TYPE_CUSTOMER_SUPPORT', '1');
-define('CONTACT_TYPE_SALES', '2');
+define('CONTACT_TYPE_SUPPORT', 'Support');
+define('CONTACT_TYPE_SALES', 'Sales');

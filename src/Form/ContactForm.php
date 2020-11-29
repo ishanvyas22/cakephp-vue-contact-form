@@ -78,8 +78,8 @@ class ContactForm extends BaseForm
      */
     protected function _execute(array $data): bool
     {
-        if ($data['contact_type'] === CONTACT_TYPE_CUSTOMER_SUPPORT) {
-            $result = $this->sendEmail($data);
+        if ($data['contact_type'] === CONTACT_TYPE_SUPPORT) {
+            $this->sendEmail($data);
         } elseif ($data['contact_type'] === CONTACT_TYPE_SALES) {
             $this->makeRequest($data);
 

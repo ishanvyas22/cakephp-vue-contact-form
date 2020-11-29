@@ -2,6 +2,9 @@
 /**
  * @var \App\View\AppView $this
  */
+
+use Cake\Core\Configure;
+
 ?>
 <div class="row">
     <div class="column-responsive column-80">
@@ -20,10 +23,7 @@
                 <?php
                 echo $this->Form->radio(
                     'contact_type',
-                    [
-                        '1' => 'Customer Support',
-                        '2' => 'Sales',
-                    ],
+                    Configure::read('Contact.types'),
                     [
                         'v-model' => 'form.contact_type',
                     ]
@@ -61,7 +61,7 @@
                 ?>
                 <div v-show="errors.has('message')" class="error-message" v-text="errors.get('message')"></div>
 
-                <div class="sales" v-if="form.contact_type === '2'">
+                <div class="sales" v-if="form.contact_type === '<?= CONTACT_TYPE_SALES ?>'">
                     <?php
                     echo $this->Form->control('company_name', [
                         'v-model' => 'form.company_name',
@@ -72,13 +72,8 @@
                     <?php
                     echo $this->Form->control('company_size', [
                         'type' => 'select',
-                        'options' => [
-                            '1' => '1',
-                            '2' => '2-9',
-                            '3' => '10-19',
-                            '4' => '20+',
-                        ],
-                        'empty' => 'Please Select',
+                        'options' => Configure::read('Contact.company_size'),
+                        'empty' => __('Please Select'),
                         'v-model' => 'form.company_size',
                     ]);
                     ?>
@@ -87,12 +82,8 @@
                     <?php
                     echo $this->Form->control('industry', [
                         'type' => 'select',
-                        'options' => [
-                            '1' => 'Renovation',
-                            '2' => 'Inspection',
-                            '3' => 'Other',
-                        ],
-                        'empty' => 'Please Select',
+                        'options' => Configure::read('Contact.industry'),
+                        'empty' => __('Please Select'),
                         'v-model' => 'form.industry',
                     ]);
                     ?>
@@ -101,13 +92,8 @@
                     <?php
                     echo $this->Form->control('region', [
                         'type' => 'select',
-                        'options' => [
-                            '1' => 'North-America',
-                            '2' => 'Europe',
-                            '3' => 'Asia',
-                            '4' => 'Other',
-                        ],
-                        'empty' => 'Please Select',
+                        'options' => Configure::read('Contact.region'),
+                        'empty' => __('Please Select'),
                         'v-model' => 'form.region',
                     ]);
                     ?>

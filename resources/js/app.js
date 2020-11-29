@@ -9,7 +9,7 @@ window.Vue = Vue;
 
 Vue.use(VueSweetalert2);
 
-const CUSTOMER_SUPPORT = '1';
+const CUSTOMER_SUPPORT = 'Support';
 
 const app = new Vue({
     el: '#contact',
