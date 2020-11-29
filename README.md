@@ -1,6 +1,6 @@
 # CakePHP + Vue.js Contact Form
 
-A simple CakePHP + Vue.js Contact Form.
+ A simple Contact Form made with CakePHP + Vue.js.
 
 ## Installation
 
