@@ -32,7 +32,7 @@
             </div>
         </div>
     </nav>
-    <main class="main">
+    <main class="main" id="main">
         <div class="container">
             <?= $this->fetch('content') ?>
         </div>

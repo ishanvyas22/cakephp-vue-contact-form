@@ -4,8 +4,10 @@
  */
 
 use Cake\Core\Configure;
-
 ?>
+
+<div class="message error" v-show="flashMessage !== ''" v-text="flashMessage" onclick="this.classList.add('hidden');"></div>
+
 <div class="row">
     <div class="column-responsive column-80">
         <div class="contact form content">

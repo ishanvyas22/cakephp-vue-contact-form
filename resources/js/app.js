@@ -12,7 +12,7 @@ Vue.use(VueSweetalert2);
 const CUSTOMER_SUPPORT = 'Support';
 
 const app = new Vue({
-    el: '#contact',
+    el: '#main',
     data: {
         form: {
             contact_type: CUSTOMER_SUPPORT,
@@ -26,9 +26,12 @@ const app = new Vue({
             region: '',
         },
         errors: new Errors(),
+        flashMessage: '',
     },
     methods: {
         submitForm() {
+            this.flashMessage = '';
+
             axios.post('/contact', this.form, {
                 headers: {
                     'X-CSRF-Token': window.csrfToken,
@@ -45,6 +48,8 @@ const app = new Vue({
                 }
             }).catch(error => {
                 this.errors.add(error.response.data.errors);
+
+                this.flashMessage = error.response.data.message;
             });
         },
         resetForm() {
