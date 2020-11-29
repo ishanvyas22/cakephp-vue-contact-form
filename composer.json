@@ -41,7 +41,7 @@
         ],
         "cs-check": "phpcs --colors -p  src/ tests/",
         "cs-fix": "phpcbf --colors -p src/ tests/",
-        "stan": "phpstan analyse src/",
+        "stan": "phpstan analyse --ansi --memory-limit=2G src/",
         "test": "phpunit --colors=always"
     },
     "prefer-stable": true,
