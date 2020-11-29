@@ -95,11 +95,18 @@ class ContactForm extends BaseForm
      */
     private function sendEmail(array $data)
     {
+        $result = [];
         $mailer = new Mailer('default');
 
-        return $mailer->setTo(Configure::read('SendMail.to'))
-            ->setSubject("{$data['firstname']} {$data['lastname']} needs some help")
-            ->deliver(sprintf('Their message is "%s", contact them at %s.', $data['message'], $data['email']));
+        try {
+            $result = $mailer->setTo(Configure::read('SendMail.to'))
+                ->setSubject("{$data['firstname']} {$data['lastname']} needs some help")
+                ->deliver(sprintf('Their message is "%s", contact them at %s.', $data['message'], $data['email']));
+        } catch (\Throwable $th) {
+            // Handle exception
+        }
+
+        return $result;
     }
 
     /**
