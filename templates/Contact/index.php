@@ -25,7 +25,6 @@
                         '2' => 'Sales',
                     ],
                     [
-                        'value' => '1',
                         'v-model' => 'form.contact_type',
                     ]
                 );

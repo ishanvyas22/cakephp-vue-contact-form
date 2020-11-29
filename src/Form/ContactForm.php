@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Form\BaseForm;
+use Cake\Core\Configure;
 use Cake\Form\Schema;
+use Cake\Mailer\Mailer;
 use Cake\Validation\Validator;
 
 class ContactForm extends BaseForm
@@ -74,7 +76,14 @@ class ContactForm extends BaseForm
     protected function _execute(array $data): bool
     {
         // Send an email.
-        debug($data);exit;
+        if ($data['contact_type'] === CONTACT_TYPE_CUSTOMER_SUPPORT) {
+            $mailer = new Mailer('default');
+            $result = $mailer->setTo(Configure::read('SendMail.to'))
+                ->setSubject("{$data['firstname']} {$data['lastname']} needs some help")
+                ->deliver(sprintf('Their message is "%s", contact them at %s.', $data['message'], $data['email']));
+        }
+
+        dd($result);
 
         return true;
     }

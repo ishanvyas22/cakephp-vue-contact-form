@@ -5,6 +5,7 @@ use Cake\Database\Connection;
 use Cake\Database\Driver\Mysql;
 use Cake\Error\ExceptionRenderer;
 use Cake\Log\Engine\FileLog;
+use Cake\Mailer\Transport\DebugTransport;
 use Cake\Mailer\Transport\MailTransport;
 
 return [
@@ -238,6 +239,15 @@ return [
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+        'development' => [
+            'className' => DebugTransport::class,
+            'host' => 'localhost',
+            'port' => 25,
+            'timeout' => 30,
+            'client' => null,
+            'tls' => false,
+            'url' => env('EMAIL_TRANSPORT_DEVELOPMENT_URL', null),
+        ],
     ],
 
     /*
@@ -251,14 +261,15 @@ return [
      */
     'Email' => [
         'default' => [
-            'transport' => 'default',
-            'from' => 'you@localhost',
-            /*
-             * Will by default be set to config value of App.encoding, if that exists otherwise to UTF-8.
-             */
-            //'charset' => 'utf-8',
-            //'headerCharset' => 'utf-8',
+            'transport' => 'development',
+            'from' => env('MAIL_FROM', 'noreply@localhost'),
+            // Enable logging of the mail
+            'log' => true,
         ],
+    ],
+
+    'SendMail' => [
+        'to' => env('MAIL_TO', 'contact@localhost'),
     ],
 
     /*
@@ -369,6 +380,14 @@ return [
             'file' => 'queries',
             'url' => env('LOG_QUERIES_URL', null),
             'scopes' => ['queriesLog'],
+        ],
+        'email' => [
+            'className' => FileLog::class,
+            'path' => LOGS,
+            'file' => 'email',
+            'url' => env('LOG_EMAIL_URL', null),
+            'levels' => ['notice', 'info', 'debug'],
+            'scopes' => ['email'],
         ],
     ],
 
