@@ -4,24 +4,29 @@ A simple CakePHP + Vue.js Contact Form.
 
 ## Installation
 
-1. Get project into your system
-    Via cloning the project into your server:
+1. Clone the repo locally
+
     ```bash
     git clone git@github.com:ishanvyas22/cakephp-vue-contact-form.git
     cd cakephp-vue-contact-form
     ```
+    
 2. Install composer dependencies
+
     ```bash
     composer install
     ```
+    
 3. Copy `.env.example` to `.env`
+
     ```bash
     cp config/.env.example config/.env
     ```
     Uncomment and set `MAIL_TO`, `MAIL_FROM` and `API_ENDPOINT_SALES` environment variables according to your needs.
+    
 4. Start [CakePHP web server](https://book.cakephp.org/4/en/installation.html#development-server) or [create v-host](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04) to run this app.
 
-All set! Navigate to http://localhost:8765/contact(or http://yourdomain.com/contact if you have created virtual host for this) to see contact form.
+All set! Navigate to http://localhost:8765/contact (or http://yourdomain.com/contact if you have created virtual host for this) to see contact form.
 
 ## Features
 
