@@ -28,7 +28,7 @@
 
             <div>
                 <h3>Interested in magicplan? Already a customer?</h3>
-                <h3>We're here for you</h3>
+                <h3>We're here for you.</h3>
             </div>
         </div>
     </nav>
